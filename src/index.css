@@ -1,0 +1,219 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-body: #020617;
+  --bg-sidebar: #020617;
+  --bg-main: #020617;
+  --bg-card: rgba(15, 23, 42, 0.9);
+  --border-card: rgba(148, 163, 184, 0.25);
+  --text-primary: #e5e7eb;
+  --text-muted: #9ca3af;
+  --accent: #6366f1;
+  --accent-soft: rgba(99, 102, 241, 0.15);
+  --danger: #ef4444;
+}
+
+/* Body e layout geral */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #1d2a49 0, #020617 55%);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
+}
+
+/* Container principal estilo dashboard */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+  width: 100%;
+}
+
+/* Título / header */
+.app-title {
+  margin-bottom: 16px;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Formulário */
+.task-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.task-input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  outline: none;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.task-input::placeholder {
+  color: rgba(148, 163, 184, 0.8);
+}
+
+.task-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-soft);
+}
+
+/* Botão adicionar */
+.btn-add {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(129, 140, 248, 0.35);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
+}
+
+.btn-add:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(129, 140, 248, 0.5);
+}
+
+/* Board Kanban */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* Coluna com efeito glass */
+.column {
+  position: relative;
+  border-radius: 18px;
+  padding: 14px 12px 16px;
+  min-height: 240px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(14px);
+}
+
+/* Borda pontilhada interior para área de drop */
+.column::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border-radius: 14px;
+  border: 1px dashed rgba(148, 163, 184, 0.35);
+  pointer-events: none;
+}
+
+/* Título da coluna */
+.column-title {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Badge de contagem */
+.column-title::after {
+  content: attr(data-count);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Texto “sem tarefas” */
+.column-empty {
+  position: relative;
+  z-index: 1;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+/* Lista de cards */
+.task-list {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Card de tarefa */
+.task-card {
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: radial-gradient(circle at top left, #1f2937 0, #020617 70%);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: grab;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.9);
+  transition: transform 0.1s ease, box-shadow 0.1s ease,
+    border-color 0.1s ease;
+}
+
+.task-card:active {
+  cursor: grabbing;
+  transform: translateY(1px) scale(0.995);
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.9);
+}
+
+.task-title {
+  font-size: 14px;
+}
+
+/* Botão apagar */
+.btn-delete {
+  padding: 2px 7px;
+  font-size: 11px;
+  border-radius: 999px;
+  border: none;
+  background-color: var(--danger);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.btn-delete:hover {
+  background-color: #dc2626;
+  transform: translateY(-1px);
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .board {
+    grid-template-columns: 1fr;
+  }
+}
