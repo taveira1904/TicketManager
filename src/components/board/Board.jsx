@@ -25,7 +25,7 @@ export function Board() {
 
   return (
     <>
-      <h1 className="app-title">Dashboard de Tarefas (Kanban)</h1>
+      <h1 className="app-title">Dashboard de Tarefas</h1>
 
       <form className="task-form" onSubmit={handleSubmit}>
         <input
