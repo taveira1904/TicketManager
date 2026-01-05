@@ -1,0 +1,5 @@
+kind: wasmer.io/App.v0
+name: TicketManager
+owner: taveira1904
+package: .
+app_id: da_nP7IptBUbLkA

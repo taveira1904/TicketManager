@@ -1,0 +1,10 @@
+[package]
+name = "ticketmanager"  
+version = "0.1.0"
+description = "TasksManager"
+
+[dependencies]
+"sharrattj/static-web-server" = "1"
+
+[fs]
+public = "dist"
